@@ -1,0 +1,130 @@
+#: import CheckBox kivy.uix.checkbox
+<CustLabel@Label>:
+    color: 0, 0, 0, 1
+ 
+SampBoxLayout:
+ 
+<SampBoxLayout>:
+    orientation: "vertical"
+    slider_colors: 0.5, 0.5, 0.5
+    canvas.before:
+        Color:
+            rgb: root.slider_colors
+        Rectangle:
+            pos: root.pos
+            size: root.size
+ 
+    BoxLayout:
+        orientation: "vertical"
+        height: 30
+        Label:
+            text: "Background color"
+            font_size: 30
+            size: self.texture_size
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: 1
+
+            Label:
+                text: "Red"
+                font_size: 30
+                size: self.texture_size
+            Label:
+                text: "Green"
+                font_size: 30
+                size: self.texture_size
+            Label:
+                text: "Bluea"
+                font_size: 30
+                size: self.texture_size
+    # ---------- Holds Slider & Switch ----------
+    BoxLayout:
+        orientation: "horizontal"
+        height: 30
+    
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: .25
+ 
+            # Define the min, max, starting value and how
+            # much the value changes with each move
+            Slider:
+                min: 0
+                max: 1
+                value: 0.5
+                on_value: root.slider_colors[0] = self.value
+            Slider:
+                min: 0
+                max: 1
+                value: 0.5
+                on_value: root.slider_colors[1] = self.value
+            Slider:
+                min: 0
+                max: 1
+                value: 0.5
+                on_value: root.slider_colors[2] = self.value
+    
+ 
+    # ---------- Displays Popup & Spinner ----------
+    BoxLayout:
+        orientation: "horizontal"
+        height: 30
+ 
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: .25
+ 
+            Button:
+                text: "Text to speech"
+                on_press: root.callback1()
+            Button:
+                text: "Face detection sampling"
+                on_press: root.callback2()
+            Button:
+                text: "Face detection run check"
+                on_press: root.callback3()
+            Button:
+                text: "Vedio capture"
+                on_press: root.callback4()
+            Button:
+                text: "Vedio play"
+                on_press: root.callback5()
+ 
+    # ---------- Displays TabbedPanel ----------
+    BoxLayout:
+        orientation: "horizontal"
+        height: 30
+ 
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: .25
+ 
+            TabbedPanel:
+                do_default_tab: False
+                tab_width: self.parent.width / 6
+                TabbedPanelItem:
+                    tab_width: 20
+                    text: "Text to speech"
+                    Label:
+                        text: "Content of First Panel"
+                TabbedPanelItem:
+                    tab_width: 20
+                    text: "Face Detection Sampling"
+                    Label:
+                        text: "Content of Second Panel"
+                TabbedPanelItem:
+                    tab_width: self.parent.width / 3
+                    text: "Face Detection Run Check"
+                    Label:
+                        text: "Content of Third Panel"
+                TabbedPanelItem:
+                    tab_width: self.parent.width / 3
+                    text: "Video Capture"
+                    Label:
+                        text: "Content of Fourth Panel"
+                TabbedPanelItem:
+                    tab_width: self.parent.width / 3
+                    text: "Video Play"
+                    Label:
+                        text: "Content of Fifth Panel"
